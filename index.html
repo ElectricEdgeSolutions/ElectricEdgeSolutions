@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectricEdgeSolutions | Professional Electrical Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-black: #0e0e0e;
+      --secondary-black: #1d1d1d;
+      --accent-orange: #ff7a00;
+      --light-orange: #ff9e42;
+      --text-light: #f5f5f5;
+      --text-gray: #b5b5b5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--primary-black);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-text {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text span {
+      color: var(--accent-orange);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 2rem;
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent-orange);
+    }
+
+    .cta-button {
+      background: var(--accent-orange);
+      color: var(--primary-black);
+      padding: 0.7rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--light-orange);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+      url('https://images.unsplash.com/photo-1621905251180-aea7b5b70743?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 10rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--accent-orange);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .services {
+      background: var(--secondary-black);
+      padding: 5rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--primary-black);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-orange);
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 5rem 0;
+      background-color: var(--primary-black);
+    }
+
+    .pricing-table {
+      background-color: var(--secondary-black);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .pricing-category {
+      margin-bottom: 2rem;
+    }
+
+    .pricing-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-title {
+      background-color: var(--accent-orange);
+      color: var(--primary-black);
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .price-items {
+      padding: 1.5rem 2rem;
+    }
+
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .price-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-weight: 500;
+    }
+
+    .item-price {
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
+
+    .contact {
+      background: var(--primary-black);
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 500px;
+      background: var(--secondary-black);
+      margin: 0 auto;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
+
+    .contact-box i {
+      font-size: 2rem;
+      color: var(--accent-orange);
+      margin-bottom: 1rem;
+    }
+
+    .contact-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-box p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: var(--secondary-black);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-gray);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+
+    .footer-logo span {
+      color: var(--accent-orange);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0.5rem;
+      }
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-text">Electric<span>Edge</span>Solutions</div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Professional Electrical Services You Can Trust</h1>
+    <p>From lighting and chandeliers to smart home upgrades — ElectricEdgeSolutions provides reliable and efficient electrical work for homes and businesses.</p>
+    <a href="#contact" class="cta-button">Request Service</a>
+  </section>
+
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Expertise</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Electrical Repairs</h3>
+          <p>Fast, safe, and affordable electrical troubleshooting and repair services for your property.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Lighting Installation</h3>
+          <p>Elegant lighting setups — from chandeliers to recessed and exterior lighting systems.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-fan"></i></div>
+          <h3>Ceiling Fan Installation</h3>
+          <p>Expert installation and wiring for all ceiling fan models and smart fan systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Service Pricing</h2>
+        <p>Transparent pricing for our installation services</p>
+      </div>
+      <div class="pricing-table">
+        <!-- Ceiling Fans -->
+        <div class="pricing-category">
+          <div class="category-title">Ceiling Fans</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Fans (up to 72 inches)</div>
+              <div class="item-price">$98 each</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Fans (74 inches and above)</div>
+              <div class="item-price">$158 each</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chandeliers -->
+        <div class="pricing-category">
+          <div class="category-title">Chandeliers</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Small Chandelier</div>
+              <div class="item-price">$128</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Large Chandelier</div>
+              <div class="item-price">$158 - $298</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Chandelier with Assembly</div>
+              <div class="item-price">$358 - $458</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Accessory & Fixture Installations -->
+        <div class="pricing-category">
+          <div class="category-title">Accessory & Fixture Installations</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Wall Sconce</div>
+              <div class="item-price">$48 (wall-mounted) - $80 (mirror-mounted)</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Pendant Light</div>
+              <div class="item-price">$80 - $98</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Exterior Sconce</div>
+              <div class="item-price">$80 - $98</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Exterior Flood Light</div>
+              <div class="item-price">$98 - $198</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Flush Mount with Assembly</div>
+              <div class="item-price">$128</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dimmers -->
+        <div class="pricing-category">
+          <div class="category-title">Dimmers</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Diva Dimmer</div>
+              <div class="item-price">$58</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Maestro Dimmer</div>
+              <div class="item-price">$58</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Caseta Diva Smart</div>
+              <div class="item-price">$98</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Smart Outlet</div>
+              <div class="item-price">$80</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- External Services -->
+        <div class="pricing-category">
+          <div class="category-title">External Services</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Service Call</div>
+              <div class="item-price">$98 - $148</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We're ready to power up your next project</p>
+      </div>
+      <div class="contact-box">
+        <i class="fas fa-envelope"></i>
+        <h3>Email Us</h3>
+        <p>electricedgesolutions@gmail.com</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Electric<span>Edge</span>Solutions</div>
+    <p>&copy; 2025 ElectricEdgeSolutions. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
