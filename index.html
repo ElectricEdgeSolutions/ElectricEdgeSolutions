@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ElectricEdgeSolutions | Professional Electrical Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0e0e">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ElectricEdge">
+  <meta name="description" content="Professional handyman and electrical installation services including TV mounting, concealed wire installation, wallpaper, picture and mirror hanging, shelving, bathroom hardware, lighting, ceiling fans, chandeliers, and more. Serving residential and commercial customers with upfront pricing.">
+  <title>ElectricEdgeSolutions | Handyman &amp; Electrical Installation Services</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -13,109 +19,174 @@
       --light-orange: #ff9e42;
       --text-light: #f5f5f5;
       --text-gray: #b5b5b5;
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --radius: 10px;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px; /* offsets sticky header */
+      -webkit-text-size-adjust: 100%; /* prevents iOS Safari from inflating text in landscape */
+      text-size-adjust: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
 
     body {
+      /* -apple-system → native San Francisco font on iPhone/iPad/Mac */
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--primary-black);
       color: var(--text-light);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent; /* removes gray tap flash on iOS */
+      overscroll-behavior-y: none;
+    }
+
+    a, button {
+      touch-action: manipulation; /* removes 300ms tap delay on iOS */
     }
 
     .container {
-      width: 90%;
-      max-width: 1200px;
+      width: min(90%, 1200px);
       margin: 0 auto;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
     }
 
+    /* ---------- Header ---------- */
     header {
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
       z-index: 100;
       padding: 1rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      padding-top: calc(1rem + env(safe-area-inset-top)); /* clears the iPhone notch / Dynamic Island */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     }
 
     .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .logo-text {
-      font-size: 1.9rem;
+      font-size: 1.7rem;
       font-weight: 700;
-      color: var(--text-light);
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
-    .logo-text span {
+    .logo-text span,
+    .footer-logo span {
       color: var(--accent-orange);
     }
 
     nav ul {
       display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
       list-style: none;
     }
 
-    nav ul li {
-      margin-left: 2rem;
-    }
-
-    nav ul li a {
+    nav a {
       color: var(--text-light);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      display: inline-block;
+      padding: 0.6rem 0.25rem; /* bigger tap target for fingers (Apple HIG ~44pt) */
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
     }
 
-    nav ul li a:hover {
+    @media (hover: hover) {
+      nav a:hover {
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+      }
+    }
+
+    nav a:focus-visible {
       color: var(--accent-orange);
+      border-color: var(--accent-orange);
     }
 
+    /* ---------- Buttons ---------- */
     .cta-button {
+      display: inline-block;
       background: var(--accent-orange);
       color: var(--primary-black);
-      padding: 0.7rem 1.4rem;
+      padding: 0.7rem 1.5rem;
       border-radius: 6px;
       font-weight: 600;
       text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .cta-button:hover {
+    @media (hover: hover) {
+      .cta-button:hover {
+        background: var(--light-orange);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(255, 122, 0, 0.35);
+      }
+    }
+
+    .cta-button:focus-visible {
       background: var(--light-orange);
-      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255, 122, 0, 0.35);
     }
 
+    .cta-button:active {
+      transform: scale(0.97); /* subtle press feedback on tap */
+      background: var(--light-orange);
+    }
+
+    /* ---------- Hero ---------- */
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-      url('https://images.unsplash.com/photo-1621905251180-aea7b5b70743?auto=format&fit=crop&w=1950&q=80');
-      background-size: cover;
-      background-position: center;
+      min-height: 70vh;
+      min-height: 70svh; /* correct height in iOS Safari with its collapsing toolbar */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 10rem 1rem;
+      padding: 7rem 1.5rem;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://images.unsplash.com/photo-1621905251180-aea7b5b70743?auto=format&fit=crop&w=1950&q=80')
+        center / cover no-repeat;
     }
 
     .hero h1 {
-      font-size: 3.2rem;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
-      color: white;
+      max-width: 900px;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--text-gray);
-      max-width: 700px;
-      margin: 0 auto 2rem;
+      max-width: 750px;
+      margin-bottom: 2rem;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 5rem 0;
     }
 
     .section-title {
@@ -124,91 +195,116 @@
     }
 
     .section-title h2 {
-      font-size: 2.5rem;
+      font-size: clamp(1.9rem, 4vw, 2.5rem);
       display: inline-block;
       position: relative;
+      padding-bottom: 0.75rem;
     }
 
     .section-title h2::after {
       content: '';
       width: 80px;
       height: 4px;
+      border-radius: 2px;
       background: var(--accent-orange);
       position: absolute;
-      bottom: -12px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
     }
 
+    .section-tagline {
+      color: var(--text-gray);
+      margin-top: 0.75rem;
+    }
+
+    /* ---------- Services ---------- */
     .services {
       background: var(--secondary-black);
-      padding: 5rem 0;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
     }
 
     .service-card {
       background: var(--primary-black);
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    @media (hover: hover) {
+      .service-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-orange);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
     }
 
     .service-icon {
       font-size: 2.5rem;
       margin-bottom: 1rem;
       color: var(--accent-orange);
+      text-align: center;
     }
 
-    /* Pricing Section */
-    .pricing {
-      padding: 5rem 0;
-      background-color: var(--primary-black);
+    .service-card h3 {
+      margin-bottom: 1rem;
+      text-align: center;
     }
 
+    .service-card ul {
+      list-style: none;
+    }
+
+    .service-card li {
+      color: var(--text-gray);
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .service-card li::before {
+      content: '\f00c'; /* Font Awesome check */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.75rem;
+      color: var(--accent-orange);
+    }
+
+    /* ---------- Pricing ---------- */
     .pricing-table {
-      background-color: var(--secondary-black);
-      border-radius: 8px;
+      background: var(--secondary-black);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .pricing-category {
-      margin-bottom: 2rem;
-    }
-
-    .pricing-category:last-child {
-      margin-bottom: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
 
     .category-title {
-      background-color: var(--accent-orange);
+      background: var(--accent-orange);
       color: var(--primary-black);
       padding: 1rem 2rem;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 600;
     }
 
     .price-items {
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
     }
 
     .price-item {
       display: flex;
       justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
       padding: 1rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .price-item:last-child {
@@ -222,21 +318,29 @@
     .item-price {
       color: var(--accent-orange);
       font-weight: 600;
+      text-align: right;
     }
 
+    /* ---------- Contact ---------- */
     .contact {
-      background: var(--primary-black);
-      padding: 6rem 0;
       text-align: center;
     }
 
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
     .contact-box {
+      flex: 1 1 300px;
       max-width: 500px;
       background: var(--secondary-black);
-      margin: 0 auto;
-      padding: 3rem;
-      border-radius: 10px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      border: 1px solid var(--border-subtle);
+      padding: 3rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     }
 
     .contact-box i {
@@ -250,18 +354,36 @@
       margin-bottom: 0.5rem;
     }
 
-    .contact-box p {
+    .contact-box a {
       color: var(--text-gray);
       font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.25s ease;
+      display: inline-block;
+      padding: 0.5rem 0.25rem; /* comfortable tap target */
+      word-break: break-word;
     }
 
+    @media (hover: hover) {
+      .contact-box a:hover {
+        color: var(--accent-orange);
+      }
+    }
+
+    .contact-box a:focus-visible,
+    .contact-box a:active {
+      color: var(--accent-orange);
+    }
+
+    /* ---------- Footer ---------- */
     footer {
       background: var(--secondary-black);
+      border-top: 1px solid var(--border-subtle);
       padding: 2.5rem 0;
+      padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); /* clears the iPhone home indicator */
       text-align: center;
       font-size: 0.95rem;
       color: var(--text-gray);
-      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .footer-logo {
@@ -271,35 +393,102 @@
       color: var(--text-light);
     }
 
-    .footer-logo span {
-      color: var(--accent-orange);
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
     }
 
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; /* Apple HIG minimum tap target */
+      height: 44px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      color: var(--text-light);
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    @media (hover: hover) {
+      .social-link:hover {
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+        transform: translateY(-2px);
+      }
+    }
+
+    .social-link:focus-visible,
+    .social-link:active {
+      color: var(--accent-orange);
+      border-color: var(--accent-orange);
+    }
+
+    /* ---------- Mobile ---------- */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.3rem;
-      }
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      nav ul li {
-        margin: 0.5rem;
-      }
       .header-content {
         flex-direction: column;
-        gap: 1rem;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 0.25rem 1.25rem;
+      }
+
+      .hero {
+        padding: 5rem 1.25rem;
+        min-height: 60svh;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+
+      .cta-button {
+        padding: 0.9rem 2rem; /* easier to tap */
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
+
+      .services-grid {
+        gap: 1.25rem;
+      }
+
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .category-title,
+      .price-items {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .contact-grid {
+        gap: 1.25rem;
+      }
+
+      .contact-box {
+        padding: 2.25rem 1.5rem;
       }
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="container">
       <div class="header-content">
         <div class="logo-text">Electric<span>Edge</span>Solutions</div>
-        <nav>
+        <nav aria-label="Main navigation">
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
@@ -307,50 +496,187 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <a href="#contact" class="cta-button">Get a Quote</a>
+        <a href="#contact" class="cta-button">Get a Free Quote</a>
       </div>
     </div>
   </header>
 
   <section class="hero" id="home">
-    <h1>Professional Electrical Services You Can Trust</h1>
-    <p>From lighting and chandeliers to smart home upgrades — ElectricEdgeSolutions provides reliable and efficient electrical work for homes and businesses.</p>
-    <a href="#contact" class="cta-button">Request Service</a>
+    <h1>Professional Handyman &amp; Electrical Installation Services</h1>
+    <p>From TV mounting with concealed wiring to wallpaper installation, shelving, mirrors, lighting, ceiling fans, chandeliers, and home improvements — ElectricEdgeSolutions delivers clean, professional workmanship with upfront pricing.</p>
+    <a href="#contact" class="cta-button">Get a Free Quote</a>
   </section>
 
   <section class="services" id="services">
     <div class="container">
       <div class="section-title">
-        <h2>Our Expertise</h2>
+        <h2>Our Services</h2>
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-bolt"></i></div>
-          <h3>Electrical Repairs</h3>
-          <p>Fast, safe, and affordable electrical troubleshooting and repair services for your property.</p>
+          <div class="service-icon"><i class="fas fa-tv" aria-hidden="true"></i></div>
+          <h3>TV Mounting</h3>
+          <ul>
+            <li>TV Mounting</li>
+            <li>Hidden Wire Concealment</li>
+            <li>Soundbar Mounting</li>
+          </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3>Lighting Installation</h3>
-          <p>Elegant lighting setups — from chandeliers to recessed and exterior lighting systems.</p>
+          <div class="service-icon"><i class="fas fa-house" aria-hidden="true"></i></div>
+          <h3>Home Installation</h3>
+          <ul>
+            <li>Picture Hanging</li>
+            <li>Mirror Installation</li>
+            <li>Floating Shelves</li>
+            <li>Curtain Rods</li>
+            <li>Bathroom Accessories</li>
+          </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-fan"></i></div>
-          <h3>Ceiling Fan Installation</h3>
-          <p>Expert installation and wiring for all ceiling fan models and smart fan systems.</p>
+          <div class="service-icon"><i class="fas fa-paint-roller" aria-hidden="true"></i></div>
+          <h3>Wallpaper</h3>
+          <ul>
+            <li>Wallpaper Installation</li>
+            <li>Feature Walls</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i></div>
+          <h3>Furniture &amp; Repairs</h3>
+          <ul>
+            <li>Furniture Assembly</li>
+            <li>Door Hinges</li>
+            <li>Door Hardware</li>
+            <li>General Handyman Repairs</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+          <h3>Electrical Installations</h3>
+          <ul>
+            <li>Ceiling Fans</li>
+            <li>Chandeliers</li>
+            <li>Pendant Lights</li>
+            <li>Wall Sconces</li>
+            <li>Exterior Lighting</li>
+            <li>Smart Dimmers</li>
+            <li>Smart Switches</li>
+            <li>Smart Outlets</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pricing Section -->
   <section class="pricing" id="pricing">
     <div class="container">
       <div class="section-title">
-        <h2>Service Pricing</h2>                   
+        <h2>Service Pricing</h2>
       </div>
       <div class="pricing-table">
-        <!-- Ceiling Fans -->
+        <div class="pricing-category">
+          <div class="category-title">TV Mounting</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">32–55" TV (includes mount + concealed power &amp; data)</div>
+              <div class="item-price">$298</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">56–75" TV (includes mount + concealed power &amp; data)</div>
+              <div class="item-price">$328</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">76"+ TV (includes mount + concealed power &amp; data)</div>
+              <div class="item-price">$358</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-category">
+          <div class="category-title">Wall Hanging</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Picture Hanging</div>
+              <div class="item-price">$38</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Small &amp; Medium Mirrors</div>
+              <div class="item-price">$38</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Large Mirrors</div>
+              <div class="item-price">$58</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Floating Shelves</div>
+              <div class="item-price">Starting at $48</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Standard Shelves</div>
+              <div class="item-price">Starting at $38</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Curtain Rod Installation</div>
+              <div class="item-price">$58 – $80</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-category">
+          <div class="category-title">Bathroom Hardware</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Towel Bar</div>
+              <div class="item-price">$38</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Toilet Paper Holder</div>
+              <div class="item-price">$28</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Robe Hook</div>
+              <div class="item-price">$28</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Bathroom Hardware Set</div>
+              <div class="item-price">Starting at $98</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-category">
+          <div class="category-title">Doors &amp; Home Repairs</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Door Hinge Replacement</div>
+              <div class="item-price">$28 per hinge</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Door Handle Installation</div>
+              <div class="item-price">Starting at $48</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Furniture Assembly</div>
+              <div class="item-price">Starting at $88</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">General Handyman Repairs</div>
+              <div class="item-price">$98/hr (1-hour minimum)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-category">
+          <div class="category-title">Wallpaper</div>
+          <div class="price-items">
+            <div class="price-item">
+              <div class="item-name">Wallpaper Installation</div>
+              <div class="item-price">$198 per wall</div>
+            </div>
+          </div>
+        </div>
+
         <div class="pricing-category">
           <div class="category-title">Ceiling Fans</div>
           <div class="price-items">
@@ -364,8 +690,7 @@
             </div>
           </div>
         </div>
-        
-        <!-- Chandeliers -->
+
         <div class="pricing-category">
           <div class="category-title">Chandeliers</div>
           <div class="price-items">
@@ -375,34 +700,33 @@
             </div>
             <div class="price-item">
               <div class="item-name">Large Chandelier</div>
-              <div class="item-price">$158 - $298</div>
+              <div class="item-price">$158 – $298</div>
             </div>
             <div class="price-item">
               <div class="item-name">Chandelier with Assembly</div>
-              <div class="item-price">$358 - $458</div>
+              <div class="item-price">$358 – $458</div>
             </div>
           </div>
         </div>
-        
-        <!-- Accessory & Fixture Installations -->
+
         <div class="pricing-category">
-          <div class="category-title">Accessory & Fixture Installations</div>
+          <div class="category-title">Accessory &amp; Fixture Installations</div>
           <div class="price-items">
             <div class="price-item">
               <div class="item-name">Wall Sconce</div>
-              <div class="item-price">$48 (wall-mounted) - $80 (mirror-mounted)</div>
+              <div class="item-price">$48 (wall-mounted) – $80 (mirror-mounted)</div>
             </div>
             <div class="price-item">
               <div class="item-name">Pendant Light</div>
-              <div class="item-price">$80 - $98</div>
+              <div class="item-price">$80 – $98</div>
             </div>
             <div class="price-item">
               <div class="item-name">Exterior Sconce</div>
-              <div class="item-price">$80 - $98</div>
+              <div class="item-price">$80 – $98</div>
             </div>
             <div class="price-item">
               <div class="item-name">Exterior Flood Light</div>
-              <div class="item-price">$98 - $198</div>
+              <div class="item-price">$98 – $198</div>
             </div>
             <div class="price-item">
               <div class="item-name">Flush Mount with Assembly</div>
@@ -410,8 +734,7 @@
             </div>
           </div>
         </div>
-        
-        <!-- Dimmers -->
+
         <div class="pricing-category">
           <div class="category-title">Dimmers</div>
           <div class="price-items">
@@ -433,14 +756,13 @@
             </div>
           </div>
         </div>
-        
-        <!-- External Services -->
+
         <div class="pricing-category">
           <div class="category-title">External Services</div>
           <div class="price-items">
             <div class="price-item">
               <div class="item-name">Service Call</div>
-              <div class="item-price">$98 - $148</div>
+              <div class="item-price">$98 – $148</div>
             </div>
           </div>
         </div>
@@ -452,45 +774,39 @@
     <div class="container">
       <div class="section-title">
         <h2>Contact Us</h2>
-        </div>
-        <p>We're ready to power up your next project</p>
+        <p class="section-tagline">We're ready to power up your next project</p>
       </div>
-      <div class="contact-box">
-        <i class="fas fa-envelope"></i>
-        <h3>Email Us @</h3>
-        <p>electricedgesolutions@gmail.com</p>
+      <div class="contact-grid">
+        <div class="contact-box">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <h3>Email Us</h3>
+          <p><a href="mailto:electricedgesolutions@gmail.com">electricedgesolutions@gmail.com</a></p>
+        </div>
+        <div class="contact-box">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          <h3>Call Us</h3>
+          <p><a href="tel:+12394572341">239-457-2341</a></p>
+        </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-logo">Electric<span>Edge</span>Solutions</div>
-    <p>&copy; 2025 ElectricEdgeSolutions. All rights reserved.</p>
-     </div>
-    <a href="https://www.instagram.com/electricedgesolutions" target="_blank" rel="noopener noreferrer" aria-label="Open our Instagram (opens in a new tab)">
-  <img src="https://static.vecteezy.com/system/resources/previews/042/148/632/non_2x/instagram-logo-instagram-social-media-icon-free-png.png" alt="Instagram" width="48" height="48">
-</a>
-  </div>
+    <div class="container">
+      <div class="footer-logo">Electric<span>Edge</span>Solutions</div>
+      <p>&copy; 2025 ElectricEdgeSolutions. All rights reserved.</p>
+      <div class="social-links">
+        <a class="social-link" href="https://www.instagram.com/electricedgesolutions" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/share/19Jt2R22ZZ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@electricedgesolutions?_r=1&amp;_t=ZT-97gQjEJAGIH" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in a new tab)">
+          <i class="fab fa-tiktok" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
   </footer>
-
-  <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
