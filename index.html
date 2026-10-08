@@ -10,7 +10,6 @@
   <meta name="apple-mobile-web-app-title" content="ElectricEdge">
   <meta name="description" content="Professional handyman and electrical installation services including TV mounting, concealed wire installation, wallpaper, picture and mirror hanging, shelving, bathroom hardware, lighting, ceiling fans, chandeliers, and more. Serving residential and commercial customers with upfront pricing.">
   <title>ElectricEdgeSolutions | Handyman &amp; Electrical Installation Services</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary-black: #0e0e0e;
@@ -246,10 +245,14 @@
     }
 
     .service-icon {
-      font-size: 2.5rem;
       margin-bottom: 1rem;
       color: var(--accent-orange);
       text-align: center;
+    }
+
+    .service-icon .icon {
+      width: 44px;
+      height: 44px;
     }
 
     .service-card h3 {
@@ -270,11 +273,13 @@
     }
 
     .service-card li::before {
-      content: '\f00c'; /* Font Awesome check */
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      font-size: 0.75rem;
-      color: var(--accent-orange);
+      content: '';
+      flex-shrink: 0;
+      width: 5px;
+      height: 10px;
+      border: solid var(--accent-orange);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translateY(-2px); /* pure-CSS checkmark, no icon font needed */
     }
 
     /* ---------- Pricing ---------- */
@@ -343,8 +348,9 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     }
 
-    .contact-box i {
-      font-size: 2rem;
+    .contact-box .icon {
+      width: 34px;
+      height: 34px;
       color: var(--accent-orange);
       margin-bottom: 1rem;
     }
@@ -412,6 +418,12 @@
       font-size: 1.3rem;
       text-decoration: none;
       transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor; /* follows the link color, so hover turns it orange */
     }
 
     @media (hover: hover) {
@@ -514,7 +526,7 @@
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-tv" aria-hidden="true"></i></div>
+          <div class="service-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
           <h3>TV Mounting</h3>
           <ul>
             <li>TV Mounting</li>
@@ -523,7 +535,7 @@
           </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-house" aria-hidden="true"></i></div>
+          <div class="service-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></div>
           <h3>Home Installation</h3>
           <ul>
             <li>Picture Hanging</li>
@@ -534,7 +546,7 @@
           </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-paint-roller" aria-hidden="true"></i></div>
+          <div class="service-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="16" height="6" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="8" y="16" width="4" height="6" rx="1"/></svg></div>
           <h3>Wallpaper</h3>
           <ul>
             <li>Wallpaper Installation</li>
@@ -542,7 +554,7 @@
           </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-screwdriver-wrench" aria-hidden="true"></i></div>
+          <div class="service-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
           <h3>Furniture &amp; Repairs</h3>
           <ul>
             <li>Furniture Assembly</li>
@@ -552,7 +564,7 @@
           </ul>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+          <div class="service-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <h3>Electrical Installations</h3>
           <ul>
             <li>Ceiling Fans</li>
@@ -562,6 +574,7 @@
             <li>Exterior Lighting</li>
             <li>Smart Dimmers</li>
             <li>Smart Switches</li>
+            <li>Outlets</li>
             <li>Smart Outlets</li>
           </ul>
         </div>
@@ -736,7 +749,7 @@
         </div>
 
         <div class="pricing-category">
-          <div class="category-title">Dimmers</div>
+          <div class="category-title">Dimmers &amp; Outlets</div>
           <div class="price-items">
             <div class="price-item">
               <div class="item-name">Diva Dimmer</div>
@@ -744,11 +757,15 @@
             </div>
             <div class="price-item">
               <div class="item-name">Maestro Dimmer</div>
-              <div class="item-price">$58</div>
+              <div class="item-price">$88</div>
             </div>
             <div class="price-item">
               <div class="item-name">Caseta Diva Smart</div>
               <div class="item-price">$98</div>
+            </div>
+            <div class="price-item">
+              <div class="item-name">Regular Outlet</div>
+              <div class="item-price">$40</div>
             </div>
             <div class="price-item">
               <div class="item-name">Smart Outlet</div>
@@ -778,12 +795,12 @@
       </div>
       <div class="contact-grid">
         <div class="contact-box">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           <h3>Email Us</h3>
           <p><a href="mailto:electricedgesolutions@gmail.com">electricedgesolutions@gmail.com</a></p>
         </div>
         <div class="contact-box">
-          <i class="fas fa-phone" aria-hidden="true"></i>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           <h3>Call Us</h3>
           <p><a href="tel:+12394572341">239-457-2341</a></p>
         </div>
@@ -797,13 +814,13 @@
       <p>&copy; 2025 ElectricEdgeSolutions. All rights reserved.</p>
       <div class="social-links">
         <a class="social-link" href="https://www.instagram.com/electricedgesolutions" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)">
-          <i class="fab fa-instagram" aria-hidden="true"></i>
+          <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
         </a>
         <a class="social-link" href="https://www.facebook.com/share/19Jt2R22ZZ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)">
-          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          <svg viewBox="0 0 320 512" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
         </a>
         <a class="social-link" href="https://www.tiktok.com/@electricedgesolutions?_r=1&amp;_t=ZT-97gQjEJAGIH" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in a new tab)">
-          <i class="fab fa-tiktok" aria-hidden="true"></i>
+          <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14z"/></svg>
         </a>
       </div>
     </div>
